@@ -10,7 +10,11 @@ class BaseConfig:
 
 
 class DevelopmentConfig(BaseConfig):
-    """Development configuration"""
+    """
+    Configuração de desenvolvimento:
+        DEFAULT - Variavel DATABASE_URL
+        Local   - Sqlite
+    """
     DEBUG = True
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL', 'sqlite:///data.db')
 
@@ -19,10 +23,10 @@ class TestingConfig(BaseConfig):
     """Testing configuration"""
     DEBUG = True
     TESTING = True
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_TEST_URL', '///sqlite/data/db')
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_TEST_URL', 'mysql://username:password@server/db')
 
 
 class ProductionConfig(BaseConfig):
     """Production configuration"""
     DEBUG = False
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL', '///sqlite/data/db')
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL', 'mysql://username:password@server/db')
